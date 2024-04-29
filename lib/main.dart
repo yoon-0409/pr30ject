@@ -13,13 +13,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
         title: "main",
         home: Scaffold(
-          body: Center(
-            child: Text('HomePage'),
-          )
-        )
-    );
+            body: Center(
+          child: Text('HomePage'),
+        )));
   }
 }
-
-
-  
