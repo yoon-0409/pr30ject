@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pr30ject_modified/screen/home_screen.dart';
+import 'package:pr30ject_modified/src/home_page_resources/screen/home_screen.dart';
 
 List screens = [
   const HomeMain(),
