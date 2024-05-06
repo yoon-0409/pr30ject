@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pr30ject_modified/screen/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +11,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        title: "main",
-        home: Scaffold(
-            body: Center(
-          child: Text('HomePage'),
-        )));
+    return const Home();
   }
 }
