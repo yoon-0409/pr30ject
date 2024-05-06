@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 
 class HomeMain extends StatefulWidget {
-  const HomeMain({super.key});
+  final paddingSize;
+
+  const HomeMain({super.key, required this.paddingSize});
 
   @override
   State<HomeMain> createState() => _HomeMainState();
@@ -12,10 +14,10 @@ class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+    var paddingSize = widget.paddingSize;
 
     return Container(
-      padding: EdgeInsets.fromLTRB(
-          screenSize.width / 21, 0, screenSize.width / 21, 0),
+      padding: EdgeInsets.fromLTRB(paddingSize, 0, paddingSize, 0),
       child: Column(
         children: [
           Row(

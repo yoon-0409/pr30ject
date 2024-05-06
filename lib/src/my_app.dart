@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:pr30ject_modified/home_page_resources/home_screen.dart';
 import 'package:pr30ject_modified/src/bottom_navigation_bar.dart';
 
-List screens = [
-  const HomeMain(),
-  const Text('서재'),
-  const Text('캐릭터'),
-  const Text('기록'),
-  const Text('설정'),
-];
+List screens(var paddingSize) {
+  return [
+    HomeMain(paddingSize: paddingSize),
+    Text('서재'),
+    Text('캐릭터'),
+    Text('기록'),
+    Text('설정'),
+  ];
+}
 
 class MyAppPage extends StatefulWidget {
   const MyAppPage({super.key});
@@ -29,6 +31,8 @@ class _MyAppPageState extends State<MyAppPage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    var paddingSize = screenSize.width / 21;
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -39,7 +43,7 @@ class _MyAppPageState extends State<MyAppPage> {
             onTap: _onBottomNavTap,
           ),
           body: Center(
-            child: screens.elementAt(currentIndex),
+            child: screens(paddingSize)[(currentIndex)],
           ),
         ),
       ),
