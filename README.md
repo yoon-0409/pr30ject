@@ -2,7 +2,7 @@
 
 : 2024 30 day project
 
-![타이핑하는 이미지](https://github.com/yS2h/Algorithm/assets/141344997/fd6d9703-29e7-4137-af8a-3628531ee65c '링크 설명(Title)')
+![타이핑하는 이미지](https://github.com/yS2h/CARRYER/assets/141344997/ae6cf00e-ff73-427a-b191-71e3085ba80a '링크 설명(Title)')
 
 ## 목차
 
