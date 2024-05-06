@@ -12,10 +12,6 @@ class MyCharacter extends StatefulWidget {
 class _MyCharacterState extends State<MyCharacter> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('character page app bar')),
-      body: Container(child: Text('character page'), alignment: Alignment.center,),
-      bottomNavigationBar: MyBottomNavigationBar(),
-    );
+    return Container();
   }
 }

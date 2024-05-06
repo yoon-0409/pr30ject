@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pr30ject_modified/src/home_page_resources/screen/main_screen.dart';
+import 'package:pr30ject_modified/src/my_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +11,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const Home();
+    return const MyAppPage();
   }
 }
