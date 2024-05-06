@@ -20,17 +20,7 @@ List screens(var paddingSize) {
   ];
 }
 
-//bottom button에 따라 전환할 AppBars:
-//Library, memo만 구현해 놨음.
-List appBars(var paddingSize) {
-  return [
-    AppBar(title: Text('home app bar')),
-    LibraryAppBar(paddingSize: paddingSize),
-    AppBar(title: Text('character app bar')),
-    MemoAppBar(paddingSize: paddingSize),
-    AppBar(title: Text('settings app bar'))
-  ];
-}
+//appBar 삭제
 
 class MyAppPage extends StatefulWidget {
   const MyAppPage({super.key});
@@ -66,7 +56,6 @@ class _MyAppPageState extends State<MyAppPage> {
         debugShowCheckedModeBanner: false,
         title: 'Main',
         home: Scaffold(
-          appBar: appBars(paddingSize)[currentIndex],
           body: Center(
             child: screens(paddingSize)[(currentIndex)],
           ),
