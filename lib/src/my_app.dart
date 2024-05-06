@@ -7,11 +7,13 @@ import 'package:pr30ject_modified/page_resources/library_page_resources/library_
 import 'package:pr30ject_modified/page_resources/memo_page_resources/memo_appbar.dart';
 import 'package:pr30ject_modified/src/bottom_navigation_bar.dart';
 
+import '../page_resources/library_page_resources/library_screen.dart';
+
 //bottom button에 따라 전환할 bodies
 List screens(var paddingSize) {
   return [
     HomeMain(paddingSize: paddingSize),
-    Text('서재'),
+    MyLibrary(paddingSize:paddingSize),
     Text('캐릭터'),
     Text('기록'),
     Text('설정'),
