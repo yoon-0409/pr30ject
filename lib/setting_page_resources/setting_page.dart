@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../src/bottom_navigation_bar.dart';
 
 class MySetting extends StatefulWidget {
   const MySetting({super.key});

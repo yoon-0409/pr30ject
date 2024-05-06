@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../src/bottom_navigation_bar.dart';
-
 class MyMemo extends StatefulWidget {
   const MyMemo({super.key});
 

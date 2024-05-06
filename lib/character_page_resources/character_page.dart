@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pr30ject_modified/src/bottom_navigation_bar.dart';
 
 class MyCharacter extends StatefulWidget {
   const MyCharacter({super.key});
