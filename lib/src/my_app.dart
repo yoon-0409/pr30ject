@@ -35,6 +35,16 @@ class _MyAppPageState extends State<MyAppPage> {
     var paddingSize = screenSize.width / 21;
     return SafeArea(
       child: MaterialApp(
+        theme: ThemeData(
+          brightness: Brightness.light,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xfff17374), // 기본 버튼 배경색
+              foregroundColor: Color(0xffffffff), // 기본 버튼 텍스트 색상
+            ),
+          ),
+          fontFamily: "Pretendard",
+        ),
         debugShowCheckedModeBanner: false,
         title: 'Main',
         home: Scaffold(

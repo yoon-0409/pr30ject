@@ -1,42 +1,82 @@
-// ignore_for_file: prefer_const_constructors, avoid_print
+// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables,
 import 'package:flutter/material.dart';
+import 'package:pr30ject_modified/model/book_model.dart';
 
 class HomeMain extends StatefulWidget {
-  final paddingSize;
+  List<Book> books = [
+    Book.fromMap({'title': '인생박물관', 'pages': 304}),
+    Book.fromMap({'title': 'CODE코드', 'pages': 624}),
+    Book.fromMap({'title': '인생박물관', 'pages': 304})
+  ];
 
-  const HomeMain({super.key, required this.paddingSize});
+  final paddingSize;
+  HomeMain({super.key, required this.paddingSize});
 
   @override
   State<HomeMain> createState() => _HomeMainState();
 }
 
 class _HomeMainState extends State<HomeMain> {
+  bool viewStack = true;
+
+  void _toggleButton() {
+    setState(() {
+      viewStack = !viewStack;
+    });
+  }
+
+  var _userBookCount = 1;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var paddingSize = widget.paddingSize;
-
+    var books = widget.books;
+    var stackBookStyle = TextStyle(
+      fontSize: screenSize.width * 0.037,
+      fontWeight: FontWeight.bold,
+    );
     return Container(
-      padding: EdgeInsets.fromLTRB(paddingSize, 0, paddingSize, 0),
+      padding: EdgeInsets.fromLTRB(paddingSize, 10, paddingSize, 0),
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: Container(
-                  color: Colors.amber,
-                  height: screenSize.height * 0.04,
+                  height: screenSize.height * 0.05,
+                  child: SearchBar(
+                    hintText: '책 검색하기',
+                    hintStyle: MaterialStateProperty.all(TextStyle(
+                        fontSize: screenSize.height * 0.02,
+                        fontWeight: FontWeight.w600)),
+                    leading: Icon(
+                      Icons.search,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      ContinuousRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                    backgroundColor: MaterialStatePropertyAll(Colors.grey[100]),
+                    elevation: MaterialStatePropertyAll(0),
+                  ),
                 ),
               ),
               SizedBox(
-                width: screenSize.width * 0.01,
+                width: screenSize.width * 0.03,
               ),
-              IconButton(
-                onPressed: () {
-                  print('카메라!');
-                },
-                icon: Icon(Icons.photo_camera),
-                iconSize: screenSize.height / 16,
+              Container(
+                margin: EdgeInsets.only(top: 6),
+                child: IconButton(
+                  onPressed: () {
+                    print('카메라!');
+                  },
+                  color: Color(0xfff17374),
+                  icon: Icon(Icons.photo_camera),
+                  iconSize: screenSize.height / 32,
+                ),
               ),
             ],
           ),
@@ -44,14 +84,17 @@ class _HomeMainState extends State<HomeMain> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                color: Colors.amber,
+                margin: EdgeInsets.only(top: 10, bottom: 10),
                 child: TextButton(
                   onPressed: () {
-                    print('전체보기!');
+                    print('전체 보기!');
                   },
                   child: Text(
-                    '전체보기',
-                    style: TextStyle(fontSize: screenSize.width * 0.065),
+                    '전체 보기 ($_userBookCount)',
+                    style: TextStyle(
+                        fontSize: screenSize.width * 0.065,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black),
                   ),
                 ),
               ),
@@ -60,15 +103,70 @@ class _HomeMainState extends State<HomeMain> {
           Row(
             children: [
               Container(
-                color: Colors.amber,
+                // color: Colors.amber,
+                height: screenSize.height * 0.06,
+                width: screenSize.width * 0.5 - paddingSize,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (viewStack == false) {
+                      _toggleButton();
+                      print(viewStack);
+                    }
+                  },
+                  style: OutlinedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor:
+                        viewStack ? Color(0xfff17374) : Color(0xfff2f2f2),
+                    foregroundColor:
+                        viewStack ? Colors.white : Color(0xfff17374),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: Text(
+                    '쌓아보기',
+                    style: stackBookStyle,
+                  ),
+                ),
               ),
               Container(
-                color: Colors.amber,
+                height: screenSize.height * 0.06,
+                width: screenSize.width * 0.5 - paddingSize,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (viewStack == true) {
+                      _toggleButton();
+                      print(viewStack);
+                    }
+                  },
+                  style: OutlinedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: viewStack == false
+                        ? Color(0xfff17374)
+                        : Color(0xfff2f2f2),
+                    foregroundColor:
+                        viewStack == false ? Colors.white : Color(0xfff17374),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: Text(
+                    '리스트형 보기',
+                    style: stackBookStyle,
+                  ),
+                ),
               ),
             ],
           ),
-          Container(
-            child: Text('widget 들어올자리'),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(
+                  0, screenSize.height * 0.001, 0, screenSize.height * 0.001),
+              color: Colors.amber,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [ElevatedButton(onPressed: () {}, child: Text(''))],
+              ),
+            ),
           )
         ],
       ),

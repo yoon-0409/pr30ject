@@ -25,27 +25,27 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'home',
+          label: '홈',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.menu_book_outlined),
-          label: 'library',
+          label: '서재',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.man_2),
-          label: 'character',
+          label: '캐릭터',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.edit),
-          label: 'memo',
+          label: '메모',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          label: 'setting',
+          label: '설정',
         ),
       ],
-      selectedItemColor: Colors.red,
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: Color(0xfff17374),
+      unselectedItemColor: Color(0xff737373),
       showSelectedLabels: true,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.shifting,
