@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_print,
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pr30ject_modified/model/book_model.dart';
+import 'package:pr30ject_modified/page_resources/home_page_resources/home_search_screen.dart';
 
 class HomeMain extends StatefulWidget {
   List<Book> books = [
@@ -46,23 +48,29 @@ class _HomeMainState extends State<HomeMain> {
             children: [
               Expanded(
                 child: Container(
-                  height: screenSize.height * 0.05,
-                  child: SearchBar(
-                    hintText: '책 검색하기',
-                    hintStyle: MaterialStateProperty.all(TextStyle(
-                        fontSize: screenSize.height * 0.02,
-                        fontWeight: FontWeight.w600)),
-                    leading: Icon(
-                      Icons.search,
-                    ),
-                    shape: MaterialStateProperty.all(
-                      ContinuousRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    backgroundColor: MaterialStatePropertyAll(Colors.grey[100]),
-                    elevation: MaterialStatePropertyAll(0),
-                  ),
-                ),
+                    height: screenSize.height * 0.05,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => SearchPage(
+                                    paddingSize: paddingSize,
+                                  )),
+                        );
+                      },
+                      style: ButtonStyle(
+                          shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      )),
+                      child: Row(
+                        children: [
+                          Icon(Icons.search),
+                          Text('책 검색하기'),
+                        ],
+                      ),
+                    )),
               ),
               SizedBox(
                 width: screenSize.width * 0.03,
