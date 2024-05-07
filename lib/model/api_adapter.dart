@@ -16,6 +16,9 @@ List<Book> parseBooks(String responseBody) {
       return itemList.map((item) => Book.fromJson(item)).toList();
     } else {
       // 예상된 구조가 아닐 경우 빈 리스트 반환
+      print(jsonData['item']);
+      print(jsonData['errorCode']);
+      print(jsonData['errorMessage']);
       print("Unexpected JSON structure");
       return [];
     }

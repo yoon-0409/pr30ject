@@ -1,16 +1,13 @@
 // ignore_for_file: prefer_const_constructors, avoid_print,
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pr30ject_modified/model/book_model.dart';
+import 'package:flutter/widgets.dart';
+import 'package:pr30ject_modified/model/book_detail_model.dart';
+import 'package:pr30ject_modified/page_resources/home_page_resources/book_detail_screen.dart';
 import 'package:pr30ject_modified/page_resources/home_page_resources/home_search_screen.dart';
+import 'package:pr30ject_modified/widget/book_stack_widget.dart';
 
 class HomeMain extends StatefulWidget {
-  List<Book> books = [
-    Book.fromMap({'title': '인생박물관', 'pages': 304}),
-    Book.fromMap({'title': 'CODE코드', 'pages': 624}),
-    Book.fromMap({'title': '인생박물관', 'pages': 304})
-  ];
-
   final paddingSize;
   HomeMain({super.key, required this.paddingSize});
 
@@ -20,7 +17,58 @@ class HomeMain extends StatefulWidget {
 
 class _HomeMainState extends State<HomeMain> {
   bool viewStack = true;
-
+  List<BookDetailModel> bookBlocks = [
+    BookDetailModel.fromMap({
+      "title": '박물관1',
+      "cover": 'https://img.icons8.com/ios/100/no-image.png',
+      "author": '나다 이 씹새야',
+      "foreword": '',
+      "publisher": '경산위대한',
+      "isbn": '',
+      "isbn13": '',
+      "itemPage": '',
+    }),
+    BookDetailModel.fromMap({
+      "title": '박물관2',
+      "cover": 'https://img.icons8.com/ios/100/no-image.png',
+      "author": '나다 이 씹새야',
+      "foreword": '',
+      "publisher": '경산위대한',
+      "isbn": '',
+      "isbn13": '',
+      "itemPage": '300',
+    }),
+    BookDetailModel.fromMap({
+      "title": '박물관3',
+      "cover": 'https://img.icons8.com/ios/100/no-image.png',
+      "author": '나다 이 씹새야',
+      "foreword": '',
+      "publisher": '경산위대한',
+      "isbn": '',
+      "isbn13": '',
+      "itemPage": '500',
+    }),
+    BookDetailModel.fromMap({
+      "title": '박물관4',
+      "cover": 'https://img.icons8.com/ios/100/no-image.png',
+      "author": '나다 이 씹새야',
+      "foreword": '',
+      "publisher": '경산위대한',
+      "isbn": '',
+      "isbn13": '',
+      "itemPage": '100',
+    }),
+    BookDetailModel.fromMap({
+      "title": '박물관5',
+      "cover": 'https://img.icons8.com/ios/100/no-image.png',
+      "author": '나다 이 씹새야',
+      "foreword": '',
+      "publisher": '경산위대한',
+      "isbn": '',
+      "isbn13": '',
+      "itemPage": '1000',
+    }),
+  ];
   void _toggleButton() {
     setState(() {
       viewStack = !viewStack;
@@ -33,7 +81,7 @@ class _HomeMainState extends State<HomeMain> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var paddingSize = widget.paddingSize;
-    var books = widget.books;
+
     var stackBookStyle = TextStyle(
       fontSize: screenSize.width * 0.037,
       fontWeight: FontWeight.bold,
@@ -60,14 +108,33 @@ class _HomeMainState extends State<HomeMain> {
                         );
                       },
                       style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                      )),
+                        shape: MaterialStatePropertyAll(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
+                        backgroundColor: MaterialStatePropertyAll(
+                          Color(0xfff2f2f2),
+                        ),
+                        elevation: MaterialStatePropertyAll(0),
+                        padding: MaterialStatePropertyAll(
+                          EdgeInsets.all(5),
+                        ),
+                      ),
                       child: Row(
                         children: [
-                          Icon(Icons.search),
-                          Text('책 검색하기'),
+                          Icon(
+                            Icons.search,
+                            size: screenSize.width * 0.06,
+                            color: Colors.grey[400],
+                          ),
+                          Text(
+                            '책 검색하기',
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: screenSize.width * 0.045,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
                       ),
                     )),
@@ -79,6 +146,20 @@ class _HomeMainState extends State<HomeMain> {
                 margin: EdgeInsets.only(top: 6),
                 child: IconButton(
                   onPressed: () {
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        margin: const EdgeInsets.all(16),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        duration: Duration(milliseconds: 1500),
+                        content: Text(
+                          '스샷은 나중에 지원해줄게',
+                          style: TextStyle(fontSize: screenSize.width * 0.04),
+                        ),
+                      ),
+                    );
                     print('카메라!');
                   },
                   color: Color(0xfff17374),
@@ -168,11 +249,22 @@ class _HomeMainState extends State<HomeMain> {
             child: Container(
               padding: EdgeInsets.fromLTRB(
                   0, screenSize.height * 0.001, 0, screenSize.height * 0.001),
-              color: Colors.amber,
+              // color: Colors.amber,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [ElevatedButton(onPressed: () {}, child: Text(''))],
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      reverse: true,
+                      itemCount: bookBlocks.length,
+                      itemBuilder: (context, index) {
+                        return BookStackWidget(
+                            bookBlock: bookBlocks[index], index: index);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           )

@@ -1,4 +1,4 @@
-class BookDetail {
+class BookDetailModel {
   String title;
   String imgURL;
   String author;
@@ -6,36 +6,36 @@ class BookDetail {
   String publisher;
   String isbn;
   String isbn13;
-  int pages;
+  String pages;
 
-  BookDetail({
-    required this.title,
-    required this.imgURL,
-    required this.author,
-    required this.foreword,
-    required this.publisher,
-    required this.isbn,
-    required this.pages,
-    required this.isbn13,
+  BookDetailModel({
+    this.title = 'Unknown Title',
+    this.imgURL = 'https://img.icons8.com/ios/100/no-image.png',
+    this.author = 'Unknown Author',
+    this.foreword = '',
+    this.publisher = 'Unknown Publisher',
+    this.isbn = '',
+    this.isbn13 = '',
+    this.pages = '',
   });
 
-  BookDetail.fromMap(Map<String, dynamic> map)
-      : title = map['title'] ?? '',
-        imgURL = map['link'] ?? 'https://img.icons8.com/ios/100/no-image.png',
-        author = map['author'] ?? '',
+  BookDetailModel.fromMap(Map<String, dynamic> map)
+      : title = map['title'] ?? 'Unknown Title',
+        imgURL = map['cover'] ?? 'https://img.icons8.com/ios/100/no-image.png',
+        author = map['author'] ?? 'Unknown Author',
         foreword = map['description'] ?? '',
-        publisher = map['publisher'] ?? '',
+        publisher = map['publisher'] ?? 'Unknown Publisher',
         isbn = map['isbn'] ?? '',
         isbn13 = map['isbn13'] ?? '',
-        pages = map['itemPage'] ?? '';
+        pages = map['itemPage'] ?? '0';
 
-  BookDetail.fromJson(Map<String, dynamic> map)
-      : title = map['title'] ?? '',
-        imgURL = map['link'] ?? 'https://img.icons8.com/ios/100/no-image.png',
-        author = map['author'] ?? '',
+  BookDetailModel.fromJson(Map<String, dynamic> map)
+      : title = map['title'] ?? 'Unknown Title',
+        imgURL = map['cover'] ?? 'https://img.icons8.com/ios/100/no-image.png',
+        author = map['author'] ?? 'Unknown Author',
         foreword = map['description'] ?? '',
-        publisher = map['publisher'] ?? '',
+        publisher = map['publisher'] ?? 'Unknown Publisher',
         isbn = map['isbn'] ?? '',
         isbn13 = map['isbn13'] ?? '',
-        pages = map['itemPage'] ?? '';
+        pages = map['itemPage'] ?? '0';
 }
