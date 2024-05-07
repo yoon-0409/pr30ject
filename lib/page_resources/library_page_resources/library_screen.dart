@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors,
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pr30ject_modified/page_resources/library_page_resources/library_search_screen.dart';
 import 'package:pr30ject_modified/widget/book_widget.dart';
 
 class MyLibrary extends StatefulWidget {
@@ -25,6 +27,11 @@ class _MyLibraryState extends State<MyLibrary> {
           IconButton(
             onPressed: () {
               print('검색!');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          LibrarySearchPage(paddingSize: paddingSize)));
             },
             icon: Icon(Icons.search),
           )
@@ -82,8 +89,7 @@ class _MyLibraryState extends State<MyLibrary> {
               flex: 80,
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                  ],
+                  children: [],
                 ),
               ),
             ),
@@ -115,9 +121,9 @@ class _MyLibraryState extends State<MyLibrary> {
     // 버튼 위의 일직선
     // 버튼이 선택되면 상단의 일직선도 색과 굵기가 바뀜(selectedIndex 값에 따라 바뀜)
     return Container(
-        width: width,
-        height: _selectedIndex==index?2:0.5,
-        color: _selectedIndex == index ? Color(0xfff17374) : Colors.grey,
-      );
+      width: width,
+      height: _selectedIndex == index ? 2 : 0.5,
+      color: _selectedIndex == index ? Color(0xfff17374) : Colors.grey,
+    );
   }
 }
