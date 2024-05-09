@@ -80,122 +80,115 @@ class _BookExplanationState extends State<BookExplanation> {
         : bookDetail.author
             .toString()
             .substring(0, bookDetail.author.toString().length - 5);
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (isloading)
-                Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (isloading)
+              Column(
+                children: [
+                  SizedBox(
+                    height: screenSize.height * 0.4,
+                  ),
+                  CircularProgressIndicator(),
+                ],
+              )
+            else if (bookDetail.title == 'error')
+              Text("Error")
+            else
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Column(
                   children: [
                     SizedBox(
-                      height: screenSize.height * 0.4,
+                      height: screenSize.height * 0.03,
                     ),
-                    CircularProgressIndicator(),
-                  ],
-                )
-              else if (bookDetail.title == 'error')
-                Text("Error")
-              else
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: screenSize.height * 0.03,
-                      ),
-                      SizedBox(
-                        width: screenSize.width * 0.9 -
-                            (bookDetail.title.length / 10) * 14,
-                        child: Center(
-                          child: Text(
-                            textAlign: TextAlign.center,
-                            '${bookDetail.title}',
-                            style: TextStyle(
-                              fontSize: screenSize.width * 0.055,
-                              fontWeight: FontWeight.w600,
-                            ),
+                    Center(
+                      child: SizedBox(
+                        width: screenSize.width * 0.8,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          '${bookDetail.title}',
+                          style: TextStyle(
+                            fontSize: screenSize.width * 0.055,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-            ],
-          ),
-          SizedBox(
-            height: screenSize.height * 0.02,
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
+              ),
+            SizedBox(
+              height: screenSize.height * 0.02,
             ),
-            child: Image.network(
-              width: screenSize.width / 2.2,
-              fit: BoxFit.fitHeight,
-              '${bookDetail.imgURL}',
-              errorBuilder: (context, error, stackTrace) {
-                // 이미지 로드 실패 시 기본 이미지 표시
-                return Image.network(
-                    'https://img.icons8.com/ios/100/no-image.png'); // 기본 이미지
-              },
-            ),
-          ),
-          SizedBox(
-            height: screenSize.height * 0.005,
-          ),
-          Text(
-            '$author',
-            style: TextStyle(
-                fontSize: screenSize.width * 0.035,
-                fontWeight: FontWeight.w600),
-          ),
-          Expanded(
-            child: Divider(
-              height: screenSize.height * 0.07, // 구분선의 전체 높이
-              thickness: 3, // 구분선의 두께
-              color: Colors.grey, // 구분선 색상
-              indent: screenSize.width * 0.05, // 좌측 여백
-              endIndent: screenSize.width * 0.05, // 우측 여백
-            ),
-          ),
-          Expanded(
-            child: Container(
-              // color: Colors.amber,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    textAlign: TextAlign.start,
-                    '${bookDetail.publisher}',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 35),
-                  ),
-                  Text(
-                    textAlign: TextAlign.start,
-                    '${bookDetail.isbn}',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  Text(
-                    '${bookDetail.isbn13}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  Text(
-                    '${bookDetail.pages}',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ],
+            ClipRRect(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              child: Image.network(
+                width: screenSize.width / 2.2,
+                fit: BoxFit.fitHeight,
+                '${bookDetail.imgURL}',
+                errorBuilder: (context, error, stackTrace) {
+                  // 이미지 로드 실패 시 기본 이미지 표시
+                  return Image.network(
+                      'https://img.icons8.com/ios/100/no-image.png'); // 기본 이미지
+                },
               ),
             ),
+            SizedBox(
+              height: screenSize.height * 0.005,
+            ),
+            Text(
+              '$author',
+              style: TextStyle(
+                  fontSize: screenSize.width * 0.035,
+                  fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
+        Divider(
+          height: screenSize.height * 0.07, // 구분선의 전체 높이
+          thickness: 3, // 구분선의 두께
+          color: Colors.grey, // 구분선 색상
+          indent: screenSize.width * 0.05, // 좌측 여백
+          endIndent: screenSize.width * 0.05, // 우측 여백
+        ),
+        Container(
+          // color: Colors.amber,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                textAlign: TextAlign.start,
+                '${bookDetail.publisher}',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 35),
+              ),
+              Text(
+                textAlign: TextAlign.start,
+                '${bookDetail.isbn}',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                '${bookDetail.isbn13}',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                '${bookDetail.pages}',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 25),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
