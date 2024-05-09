@@ -66,9 +66,8 @@ class _BookStackWidgetState extends State<BookStackWidget> {
                     shape: RoundedRectangleBorder(), // 테두리 각진 형태
                     padding: EdgeInsets.all(0)),
                 onPressed: () {
+                  Navigator();
                   print(bookBlock.title);
-                  print(brightness(colorScale));
-                  print(widget.index);
                 },
                 child: Text(
                   '${bookBlock.title}',

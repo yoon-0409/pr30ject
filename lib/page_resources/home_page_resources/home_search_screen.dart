@@ -17,7 +17,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  // List<Book> books = [];
+  List<Book> books = [];
   bool isloading = false;
   var apiKey = 'ttbquddbs04090915001';
   var title = '';
@@ -27,20 +27,22 @@ class _SearchPageState extends State<SearchPage> {
       isloading = true;
     });
     try {
-      final response = await http.post(
-          Uri.parse("http://www.aladin.co.kr/ttb/api/ItemSearch.aspx"),
-          body: {
-            "ttbKey": apiKey,
-            "Query": title,
-            "QueryType": "Keyword",
-            "MaxResults": "10",
-            "start": "1",
-            "SearchTarget": "Book",
-            "output": "JS",
-            "Version": "20131101",
-            "Sort": "Accuracy",
-            "Cover": "MidBig"
-          });
+      final uri =
+          Uri.parse("http://www.aladin.co.kr/ttb/api/ItemSearch.aspx").replace(
+        queryParameters: {
+          "ttbKey": apiKey,
+          "Query": title,
+          "QueryType": "Keyword",
+          "MaxResults": "10",
+          "start": "1",
+          "SearchTarget": "Book",
+          "output": "JS",
+          "Version": "20131101",
+          "Sort": "Accuracy",
+          "Cover": "MidBig"
+        },
+      );
+      final response = await http.get(uri);
       if (response.statusCode == 200) {
         setState(() {
           books = parseBooks(utf8.decode(response.bodyBytes));
@@ -59,7 +61,6 @@ class _SearchPageState extends State<SearchPage> {
     }
   }
 
-  List<Book> books = [];
   // List<Book> books = [
   //   Book.fromMap({
   //     "title": "1",
@@ -67,26 +68,8 @@ class _SearchPageState extends State<SearchPage> {
   //     "author": "나다 이년아1",
   //     "foreword": "배병윤이 코딩하다 빡쳐서 쓴 글"
   //   }),
-  //   Book.fromMap({
-  //     "title": "2",
-  //     "imgURL": "https://img.icons8.com/ios/100/no-image.png",
-  //     "author": "나다 이년아2",
-  //     "foreword": "배병윤이 코딩하다 빡쳐서 쓴 글"
-  //   }),
-  //   // Book.fromMap({
-  //   //   "title": "3",
-  //   //   "imgURL": "https://img.icons8.com/ios/100/no-image.png",
-  //   //   "author": "나다 이년아3",
-  //   //   "foreword": "배병윤이 코딩하다 빡쳐서 쓴 글"
-  //   // }),
-  //   // Book.fromMap({
-  //   //   "title": "4",
-  //   //   "imgURL": "https://img.icons8.com/ios/100/no-image.png",
-  //   //   "author": "나다 이년아4",
-  //   //   "foreword": "배병윤이 코딩하다 빡쳐서 쓴 글"
-  //   // })
   // ];
-
+  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -116,9 +99,12 @@ class _SearchPageState extends State<SearchPage> {
                 height: screenSize.height * 0.05,
                 // color: Colors.amber,
                 child: SearchBar(
+                  controller: _searchController,
                   trailing: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _searchController.clear();
+                      },
                       icon: Icon(Icons.cancel),
                     ),
                     IconButton(
@@ -142,7 +128,14 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
               if (isloading)
-                CircularProgressIndicator()
+                Column(
+                  children: [
+                    SizedBox(
+                      height: screenSize.height * 0.38,
+                    ),
+                    CircularProgressIndicator(),
+                  ],
+                )
               else if (books.isNotEmpty)
                 Expanded(
                   child: ListView.builder(

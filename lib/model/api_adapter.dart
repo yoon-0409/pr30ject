@@ -28,3 +28,33 @@ List<Book> parseBooks(String responseBody) {
     return [];
   }
 }
+
+BookDetail parseBookDetail(String responseBody) {
+  final Map<String, dynamic> data = jsonDecode(responseBody);
+
+  // 'item' 배열이 비어있는지 확인합니다.
+  if (data.containsKey('item') &&
+      data['item'] is List &&
+      data['item'].isNotEmpty) {
+    // 'item' 배열의 첫 번째 요소를 가져와 'BookDetail' 객체로 변환합니다.
+    final Map<String, dynamic> itemData = data['item'][0];
+    return BookDetail.fromJson(itemData);
+  } else {
+    // 'item' 배열이 비어있거나 유효한 JSON 구조가 아닐 경우 예외를 던집니다.
+
+    throw Exception("No book details found in the provided JSON.");
+  }
+}
+
+BookDetail _createDefaultBookDetail() {
+  return BookDetail(
+    title: 'error',
+    isbn: '',
+    isbn13: '',
+    imgURL: '', // 기본 이미지
+    publisher: '',
+    author: '',
+    foreword: '',
+    pages: '',
+  );
+}

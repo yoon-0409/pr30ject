@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pr30ject_modified/page_resources/library_page_resources/library_search_screen.dart';
-import 'package:pr30ject_modified/widget/book_widget.dart';
 
 class MyLibrary extends StatefulWidget {
   final double paddingSize;

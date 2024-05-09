@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pr30ject_modified/model/book_detail_model.dart';
-import 'package:pr30ject_modified/page_resources/home_page_resources/book_detail_screen.dart';
 import 'package:pr30ject_modified/page_resources/home_page_resources/home_search_screen.dart';
 import 'package:pr30ject_modified/widget/book_stack_widget.dart';
 
@@ -19,7 +18,7 @@ class _HomeMainState extends State<HomeMain> {
   bool viewStack = true;
   List<BookDetailModel> bookBlocks = [
     BookDetailModel.fromMap({
-      "title": '박물관1',
+      "title": '박물관',
       "cover": 'https://img.icons8.com/ios/100/no-image.png',
       "author": '나다 이 씹새야',
       "foreword": '',
@@ -29,7 +28,7 @@ class _HomeMainState extends State<HomeMain> {
       "itemPage": '',
     }),
     BookDetailModel.fromMap({
-      "title": '박물관2',
+      "title": '미술관',
       "cover": 'https://img.icons8.com/ios/100/no-image.png',
       "author": '나다 이 씹새야',
       "foreword": '',
@@ -39,7 +38,7 @@ class _HomeMainState extends State<HomeMain> {
       "itemPage": '300',
     }),
     BookDetailModel.fromMap({
-      "title": '박물관3',
+      "title": '인생사',
       "cover": 'https://img.icons8.com/ios/100/no-image.png',
       "author": '나다 이 씹새야',
       "foreword": '',
@@ -49,7 +48,7 @@ class _HomeMainState extends State<HomeMain> {
       "itemPage": '500',
     }),
     BookDetailModel.fromMap({
-      "title": '박물관4',
+      "title": '요리의비법',
       "cover": 'https://img.icons8.com/ios/100/no-image.png',
       "author": '나다 이 씹새야',
       "foreword": '',
@@ -59,7 +58,7 @@ class _HomeMainState extends State<HomeMain> {
       "itemPage": '100',
     }),
     BookDetailModel.fromMap({
-      "title": '박물관5',
+      "title": '코딩잘하게 해주세요',
       "cover": 'https://img.icons8.com/ios/100/no-image.png',
       "author": '나다 이 씹새야',
       "foreword": '',

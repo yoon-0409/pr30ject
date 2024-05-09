@@ -9,13 +9,15 @@ class BookWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var imgURL = book.imgURL.isNotEmpty
-        ? book.imgURL
-        : 'https://via.placeholder.com/150';
-    var title = book.title.isNotEmpty ? book.title : 'Untitled';
-    var author = book.author.isNotEmpty ? book.author : 'Unknown Author';
-    var foreword =
-        book.foreword.isNotEmpty ? book.foreword : 'No description available';
+    var imgURL = book.imgURL;
+    var title = book.title;
+    var author = book.author.toString().length < 5
+        ? book.author.toString()
+        : book.author
+            .toString()
+            .substring(0, book.author.toString().length - 5);
+    ;
+    var foreword = book.foreword;
     var screenSize = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
@@ -46,7 +48,12 @@ class BookWidget extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => BookDetail()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BookDetailScreen(
+                        book: book,
+                        // itemId: book.itemId,
+                      )));
         },
         child: Container(
           child: Row(
@@ -59,7 +66,7 @@ class BookWidget extends StatelessWidget {
                   offset: Offset(-5, 1), //이미지 절대 이동
                   child: Image.network(
                     width: screenSize.width / 4.5,
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.fill,
                     '$imgURL',
                     errorBuilder: (context, error, stackTrace) {
                       // 이미지 로드 실패 시 기본 이미지 표시
@@ -77,7 +84,8 @@ class BookWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '$title',
+                        //제목
+                        '${title}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -87,6 +95,7 @@ class BookWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
+                        //지은이
                         '$author',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -97,6 +106,7 @@ class BookWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
+                        //책 설명
                         '$foreword',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

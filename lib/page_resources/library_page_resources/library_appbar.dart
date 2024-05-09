@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LibraryAppBar extends StatefulWidget implements PreferredSizeWidget{
+class LibraryAppBar extends StatefulWidget implements PreferredSizeWidget {
   final paddingSize;
 
   const LibraryAppBar({super.key, required this.paddingSize});
@@ -22,10 +22,11 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
     return AppBar(
       actions: [
         IconButton(
-            onPressed: (){ print('library page : search button is pressed'); },
+            onPressed: () {
+              print('library page : search button is pressed');
+            },
             icon: Icon(Icons.search),
-            iconSize: screenSize.height / 16
-        )
+            iconSize: screenSize.height / 16)
       ],
     );
   }

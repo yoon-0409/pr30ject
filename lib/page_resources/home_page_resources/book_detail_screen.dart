@@ -1,17 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:pr30ject_modified/model/book_model.dart';
+import 'package:pr30ject_modified/page_resources/home_page_resources/book_%20explanation.dart';
 
-class BookDetail extends StatefulWidget {
-  const BookDetail({super.key, ISBN});
+class BookDetailScreen extends StatefulWidget {
+  final Book book;
+  BookDetailScreen({
+    super.key,
+    required this.book,
+  });
 
   @override
-  State<BookDetail> createState() => _BookDetailState();
+  State<BookDetailScreen> createState() => _BookDetailScreenState();
 }
 
-class _BookDetailState extends State<BookDetail> {
+class _BookDetailScreenState extends State<BookDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text('책입니다'),
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                size: screenSize.width * 0.07,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  '저장',
+                  style: TextStyle(
+                    fontSize: screenSize.width * 0.045,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xfff17374),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: BookExplanation(
+            book: widget.book,
+          ),
+        ),
+      ),
     );
   }
 }
