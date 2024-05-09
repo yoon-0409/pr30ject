@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pr30ject_modified/model/book_model.dart';
-import 'package:pr30ject_modified/page_resources/home_page_resources/book_%20explanation.dart';
+import 'package:pr30ject_modified/page_resources/home_page_resources/book_explanation.dart';
 
 class BookDetailScreen extends StatefulWidget {
   final Book book;
@@ -20,7 +20,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
     return Container(
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
