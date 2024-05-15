@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:pr30ject_modified/page_resources/home_page_resources/home_screen.dart';
 import 'package:pr30ject_modified/page_resources/character_page_resources/character_screen.dart';
+import 'package:pr30ject_modified/page_resources/memo_page_resources/memo_screen.dart';
 import 'package:pr30ject_modified/src/bottom_navigation_bar.dart';
 
 import '../page_resources/library_page_resources/library_screen.dart';
@@ -13,7 +14,7 @@ List screens(var paddingSize) {
     HomeMain(paddingSize: paddingSize),
     MyLibrary(paddingSize: paddingSize),
     CharacterPage(paddingSize: paddingSize),
-    Text('기록'),
+    MemoPage(paddingSize: paddingSize),
     Text('설정'),
   ];
 }
