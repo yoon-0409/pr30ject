@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'book_model.dart';
 
 // JSON 데이터를 파싱하고, Book 객체의 목록을 반환하는 함수
@@ -54,6 +55,7 @@ BookDetail _createDefaultBookDetail() {
     imgURL: '', // 기본 이미지
     publisher: '',
     author: '',
+    itemId: 0,
     foreword: '',
     pages: '',
   );

@@ -245,6 +245,26 @@ class _BookExplanationState extends State<BookExplanation> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                  style: ButtonStyle(
+                    padding: MaterialStatePropertyAll(
+                      EdgeInsets.only(left: 0),
+                    ),
+                  ),
+                  onPressed: () {
+                    print('${bookDetail.itemId.toString()}');
+                  },
+                  child: Text(
+                    '자세히 보기',
+                    style: TextStyle(
+                        decorationColor: Color(0xfff17374),
+                        decoration: TextDecoration.underline,
+                        fontSize: screenSize.width * 0.04,
+                        color: Color(0xfff17374)),
+                  ))
             ],
           ),
         ),

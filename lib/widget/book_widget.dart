@@ -22,20 +22,14 @@ class BookWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.7), // 그림자의 색상
-            spreadRadius: 0, // 그림자의 확산 정도
-            blurRadius: 5, // 그림자의 흐림 정도
-            offset: Offset(0, 4), // 그림자의 위치 (x, y))
-          ),
-        ],
+        boxShadow: [],
       ),
       height: screenSize.height / 8,
       // color: Colors.amber,
       margin: EdgeInsets.only(bottom: screenSize.height / 80),
       child: ElevatedButton(
         style: ButtonStyle(
+          elevation: MaterialStatePropertyAll(3),
           shape: MaterialStatePropertyAll(
             ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(20),

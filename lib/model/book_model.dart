@@ -41,6 +41,7 @@ class BookDetail {
   String imgURL;
   String publisher;
   String author;
+  int itemId;
   String foreword;
   String pages;
 
@@ -51,6 +52,7 @@ class BookDetail {
     required this.imgURL,
     required this.publisher,
     required this.author,
+    required this.itemId,
     required this.foreword,
     required this.pages,
   });
@@ -63,7 +65,7 @@ class BookDetail {
         isbn13 = map['isbn13'] ?? '',
         publisher = map['publisher'] ?? '',
         author = map['author'] ?? '', // null인 경우 기본값 설정
-
+        itemId = map['itemId'] ?? null,
         pages =
             map.containsKey('subInfo') && map['subInfo'].containsKey('itemPage')
                 ? map['subInfo']['itemPage'].toString()
@@ -78,6 +80,7 @@ class BookDetail {
         isbn13 = map['isbn13'] ?? '',
         publisher = map['publisher'] ?? '',
         author = map['author'] ?? 'Unknown Author', // null인 경우 기본값 설정
+        itemId = map['itemId'] ?? null,
         pages =
             map.containsKey('subInfo') && map['subInfo'].containsKey('itemPage')
                 ? map['subInfo']['itemPage'].toString()
@@ -91,6 +94,7 @@ class BookDetail {
         isbn13 = '',
         publisher = '',
         author = '',
+        itemId = 0,
         pages = '',
         foreword = '';
 }
