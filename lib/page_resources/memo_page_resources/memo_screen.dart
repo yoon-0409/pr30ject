@@ -11,9 +11,9 @@ class MemoPage extends StatefulWidget {
 }
 
 class _MyLibraryState extends State<MemoPage> {
-  int _selectedIndex = 0; // 선택된 버튼 인덱스를 저장할 변수
+  int _selectedIndex = 0; 
 
-  bool viewStack = false; // 버튼 클릭에 따른 상태를 저장할 변수
+  bool viewStack = false; 
 
   void _toggleButton() {
     setState(() {
@@ -26,7 +26,6 @@ class _MyLibraryState extends State<MemoPage> {
     var screenSize = MediaQuery.of(context).size;
     var paddingSize = widget.paddingSize;
 
-    // 스택 쌓기 및 리스트 형 보기 버튼에 대한 스타일
     final stackBookStyle = TextStyle(
       fontSize: screenSize.height * 0.02,
       fontWeight: FontWeight.w500,
@@ -40,7 +39,6 @@ class _MyLibraryState extends State<MemoPage> {
         padding: EdgeInsets.fromLTRB(paddingSize, 10, paddingSize, 0),
         child: Column(
           children: [
-            // 나의 서재 텍스트
             Flexible(
               flex: 10,
               child: Container(
@@ -55,7 +53,6 @@ class _MyLibraryState extends State<MemoPage> {
                 ),
               ),
             ),
-            // 쌓아보기 및 리스트형 보기 버튼
             Row(
               children: [
                 Container(
